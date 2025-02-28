@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3hnsffur6h1c"]
+
+[ext_resource type="Texture2D" uid="uid://co5o85ack5xi2" path="res://assets/tile_set_1.png" id="1_m4gc5"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_nw1pb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs5we"]
+atlas = ExtResource("1_m4gc5")
+region = Rect2(832, 1888, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vkaku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs5we")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hecrm"]
+radius = 11.0
+height = 32.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_nw1pb")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vkaku")
+
+[node name="PlayerHitBox" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_hecrm")

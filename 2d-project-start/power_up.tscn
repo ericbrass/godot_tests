@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://6q434sa1xsmx"]
+
+[ext_resource type="Texture2D" uid="uid://d38gwqqitl7p7" path="res://assets/simple_tilemap.png" id="1_g02ck"]
+[ext_resource type="Script" path="res://power_up.gd" id="1_xipyf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11gjt"]
+atlas = ExtResource("1_g02ck")
+region = Rect2(608, 240, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_223sv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11gjt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xosw2"]
+radius = 27.0185
+
+[node name="PowerUp" type="Area2D"]
+script = ExtResource("1_xipyf")
+
+[node name="Power_up_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_223sv")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Power_up_PU_box" type="CollisionShape2D" parent="."]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_xosw2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

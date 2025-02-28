@@ -18,8 +18,11 @@ func take_damage():
 	
 	if health <= 0: 
 		queue_free()
-		
+		const POWER_UP = preload("res://power_up.tscn")
 		const SMOKE_SCENE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var smoke = SMOKE_SCENE.instantiate()
+		var power_up = POWER_UP.instantiate()
 		get_parent().add_child(smoke)
+		get_parent().add_child(power_up)
 		smoke.global_position = global_position
+		power_up.global_position = global_position

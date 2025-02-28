@@ -1,8 +1,0 @@
-res://survivor_game.tscn
-res://survivor_game.gd
-res://slime.tscn
-res://Clock.gd
-res://ghost_mob.tscn
-res://ghost_mob.gd
-res://player.gd
-res://player.tscn
