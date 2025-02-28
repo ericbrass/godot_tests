@@ -1,0 +1,7 @@
+res://survivor_game.tscn
+res://bullet.gd
+res://gun.tscn
+res://player.tscn
+res://bullet.tscn
+res://mob.tscn
+res://gun.gd

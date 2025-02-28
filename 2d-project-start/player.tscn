@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0q8w3w6pb005"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ib4wb"]
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_jqjkf"]
+[ext_resource type="PackedScene" uid="uid://cb36lc1nnb2ud" path="res://gun.tscn" id="3_ubuqw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qe7lr"]
+radius = 35.3553
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(356, 212)
+script = ExtResource("1_ib4wb")
+
+[node name="HappyBoo" parent="." instance=ExtResource("1_jqjkf")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_qe7lr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("3_ubuqw")]
+position = Vector2(0, -29)
