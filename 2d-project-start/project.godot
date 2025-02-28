@@ -79,6 +79,10 @@ run/main_scene="res://survivor_game.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.png"
 
+[autoload]
+
+Clock="*res://Clock.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -127,3 +131,4 @@ move_down={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqonbh34g6q0o"]
+
+[ext_resource type="Script" path="res://ghost_mob.gd" id="1_7qqx1"]
+[ext_resource type="Texture2D" uid="uid://d38gwqqitl7p7" path="res://assets/simple_tilemap.png" id="1_74mwl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_343ec"]
+atlas = ExtResource("1_74mwl")
+region = Rect2(416, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr1ju"]
+atlas = ExtResource("1_74mwl")
+region = Rect2(432, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbnoh"]
+atlas = ExtResource("1_74mwl")
+region = Rect2(448, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewtrp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_343ec")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr1ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbnoh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bk1j1"]
+radius = 36.0555
+
+[node name="GhostMob" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_7qqx1")
+
+[node name="GhostAnimation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_ewtrp")
+animation = &"hurt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bk1j1")

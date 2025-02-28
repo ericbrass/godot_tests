@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl16k5vg07jb1"]
+[gd_scene load_steps=6 format=3 uid="uid://bl16k5vg07jb1"]
 
 [ext_resource type="PackedScene" uid="uid://d0q8w3w6pb005" path="res://player.tscn" id="1_1jmrk"]
 [ext_resource type="Script" path="res://survivor_game.gd" id="1_4rqrc"]
 [ext_resource type="PackedScene" uid="uid://dbitndemlvvof" path="res://tree.tscn" id="2_gs2he"]
+[ext_resource type="Script" path="res://Clock.gd" id="3_lla4o"]
 
 [sub_resource type="Curve2D" id="Curve2D_44us8"]
 _data = {
@@ -31,6 +32,20 @@ position = Vector2(850, 515)
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(0, 1)
 
+[node name="Clock" type="Label" parent="Player"]
+unique_name_in_owner = true
+offset_left = -624.0
+offset_top = -434.0
+offset_right = -443.0
+offset_bottom = -363.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "0.00"
+script = ExtResource("3_lla4o")
+
+[node name="ClockTimer" type="Timer" parent="Player/Clock"]
+autostart = true
+
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-850, -515)
 curve = SubResource("Curve2D_44us8")
@@ -40,33 +55,34 @@ unique_name_in_owner = true
 position = Vector2(-543, -367)
 rotation = -0.00383407
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
+[node name="Trees" type="Node" parent="."]
 
-[node name="Tree" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(157, 968)
 
-[node name="Tree2" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree2" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(386, 320)
 
-[node name="Tree3" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree3" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(1433, 374)
 
-[node name="Tree4" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree4" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(1498, 345)
 
-[node name="Tree5" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree5" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(1504, 402)
 
-[node name="Tree6" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree6" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(1393, 880)
 
-[node name="Tree7" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree7" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(828, 201)
 
-[node name="Tree8" parent="." instance=ExtResource("2_gs2he")]
+[node name="Tree8" parent="Trees" instance=ExtResource("2_gs2he")]
 position = Vector2(1603, 733)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -80,7 +96,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.737255)
 
-[node name="Label" type="Label" parent="GameOverScreen/ColorRect"]
+[node name="GameOverLabel" type="Label" parent="GameOverScreen/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,8 +110,8 @@ offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 115
-text = "Game Over"
 horizontal_alignment = 1
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Player/Clock/ClockTimer" to="Player/Clock" method="_on_clock_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

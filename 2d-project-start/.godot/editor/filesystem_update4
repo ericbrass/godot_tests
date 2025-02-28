@@ -1,9 +1,8 @@
 res://survivor_game.tscn
-res://bullet.tscn
-res://gun.gd
-res://gun.tscn
-res://mob.tscn
-res://mob.gd
+res://survivor_game.gd
+res://slime.tscn
+res://Clock.gd
+res://ghost_mob.tscn
+res://ghost_mob.gd
 res://player.gd
 res://player.tscn
-res://survivor_game.gd
