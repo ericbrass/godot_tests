@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://i78mbeivitnt"]
+
+[ext_resource type="Texture2D" uid="uid://co5o85ack5xi2" path="res://assets/tile_set_1.png" id="1_ibxx7"]
+[ext_resource type="Script" path="res://scripts/mob_ghost.gd" id="1_q6nx1"]
+[ext_resource type="PackedScene" uid="uid://pkxp3880k50j" path="res://scenes/hurt_box.tscn" id="3_a5lwe"]
+[ext_resource type="PackedScene" uid="uid://bu04t0237soq4" path="res://scenes/hit_box.tscn" id="4_1s7qn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8m4m2"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lwkk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isghk"]
+radius = 12.0416
+
+[node name="mobGhost" type="CharacterBody2D"]
+script = ExtResource("1_q6nx1")
+
+[node name="mobGhostSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_ibxx7")
+hframes = 64
+vframes = 95
+frame = 4737
+
+[node name="mobGhostCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8m4m2")
+debug_color = Color(0, 0.409159, 0.236674, 0.42)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_a5lwe")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="HurtBoxShape" parent="HurtBox" index="0"]
+shape = SubResource("CircleShape2D_3lwkk")
+
+[node name="HitBox" parent="." instance=ExtResource("4_1s7qn")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitBoxShape" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_isghk")
+debug_color = Color(0.98539, 0, 0.334244, 0.42)
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

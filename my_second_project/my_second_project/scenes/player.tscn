@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3hnsffur6h1c"]
+[gd_scene load_steps=8 format=3 uid="uid://c3hnsffur6h1c"]
 
 [ext_resource type="Texture2D" uid="uid://co5o85ack5xi2" path="res://assets/tile_set_1.png" id="1_m4gc5"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nw1pb"]
+[ext_resource type="PackedScene" uid="uid://pkxp3880k50j" path="res://scenes/hurt_box.tscn" id="3_e80s7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hs5we"]
 atlas = ExtResource("1_m4gc5")
@@ -22,12 +23,28 @@ animations = [{
 radius = 11.0
 height = 32.0
 
-[node name="player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3p0yj"]
+radius = 7.0
+height = 26.0
+
+[node name="player" type="CharacterBody2D" groups=["playerGroup"]]
 script = ExtResource("1_nw1pb")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_vkaku")
 
-[node name="PlayerHitBox" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
+[node name="PlayerCollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hecrm")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_e80s7")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HurtBoxShape" parent="HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_3p0yj")
+debug_color = Color(0.976471, 0, 0.180392, 0.419608)
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]
