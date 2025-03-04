@@ -1,19 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://64oga4ndmjbf"]
+[gd_scene load_steps=10 format=3 uid="uid://64oga4ndmjbf"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_e8irn"]
+[ext_resource type="Script" uid="uid://3550a7jhrj0m" path="res://scripts/game.gd" id="1_e8irn"]
 [ext_resource type="Texture2D" uid="uid://d2m03uocyml5q" path="res://assets/green-grass-256x256.png" id="2_3e6yk"]
 [ext_resource type="PackedScene" uid="uid://c3hnsffur6h1c" path="res://scenes/player.tscn" id="3_6trht"]
-[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_5ve23"]
-[ext_resource type="Script" path="res://scripts/spawn_info.gd" id="5_d2e5i"]
+[ext_resource type="Script" uid="uid://cv51rtl3buuxm" path="res://scripts/enemy_spawner.gd" id="4_5ve23"]
+[ext_resource type="Script" uid="uid://cvkxdy1vf5sns" path="res://scripts/spawn_info.gd" id="5_d2e5i"]
 [ext_resource type="PackedScene" uid="uid://i78mbeivitnt" path="res://scenes/mob_ghost.tscn" id="6_rw3el"]
+[ext_resource type="PackedScene" uid="uid://daw5s15058251" path="res://scenes/mob_rat.tscn" id="7_u5sy4"]
 
 [sub_resource type="Resource" id="Resource_i1vjb"]
 script = ExtResource("5_d2e5i")
 time_start = 0
-time_end = 60
+time_end = 10
+enemy = ExtResource("7_u5sy4")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_u5sy4"]
+script = ExtResource("5_d2e5i")
+time_start = 10
+time_end = 20
 enemy = ExtResource("6_rw3el")
 enemy_num = 1
 enemy_spawn_delay = 1
+metadata/_custom_type_script = "uid://cvkxdy1vf5sns"
 
 [node name="Game" type="Node"]
 script = ExtResource("1_e8irn")
@@ -33,7 +43,7 @@ region_rect = Rect2(0, 0, 5120, 5120)
 
 [node name="EnemySpawner" type="Node2D" parent="." groups=["playerGroup"]]
 script = ExtResource("4_5ve23")
-spawns = Array[ExtResource("5_d2e5i")]([SubResource("Resource_i1vjb")])
+spawns = Array[ExtResource("5_d2e5i")]([SubResource("Resource_i1vjb"), SubResource("Resource_u5sy4")])
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
 autostart = true

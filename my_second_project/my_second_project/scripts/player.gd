@@ -19,9 +19,9 @@ func _physics_process(delta):
 	#face sprite left and right
 	var left_right = direction.x
 	if left_right > 0:
-		sprite.flip_h = true
-	elif left_right < 0:
 		sprite.flip_h = false
+	elif left_right < 0:
+		sprite.flip_h = true
 	move_and_slide()
 
 func _on_hurt_box_hurt(damage):

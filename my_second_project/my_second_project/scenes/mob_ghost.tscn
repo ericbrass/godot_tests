@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://i78mbeivitnt"]
 
 [ext_resource type="Texture2D" uid="uid://co5o85ack5xi2" path="res://assets/tile_set_1.png" id="1_ibxx7"]
-[ext_resource type="Script" path="res://scripts/mob_ghost.gd" id="1_q6nx1"]
+[ext_resource type="Script" uid="uid://c56wfsuwacx4r" path="res://scripts/mob_ghost.gd" id="1_q6nx1"]
 [ext_resource type="PackedScene" uid="uid://pkxp3880k50j" path="res://scenes/hurt_box.tscn" id="3_a5lwe"]
 [ext_resource type="PackedScene" uid="uid://bu04t0237soq4" path="res://scenes/hit_box.tscn" id="4_1s7qn"]
 
@@ -19,9 +19,8 @@ script = ExtResource("1_q6nx1")
 [node name="mobGhostSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
 texture = ExtResource("1_ibxx7")
-hframes = 64
-vframes = 95
-frame = 4737
+region_enabled = true
+region_rect = Rect2(32, 2368, 32, 32)
 
 [node name="mobGhostCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8m4m2")
