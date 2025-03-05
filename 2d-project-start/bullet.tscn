@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0fuohhg5x2do"]
 
 [ext_resource type="Texture2D" uid="uid://dftkbqwsfd68r" path="res://pistol/projectile.png" id="1_ke7wa"]
-[ext_resource type="Script" path="res://bullet.gd" id="1_kkgxn"]
+[ext_resource type="Script" uid="uid://cidr3bd2sh8bl" path="res://bullet.gd" id="1_kkgxn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i1udm"]
 radius = 16.0312

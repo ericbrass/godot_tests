@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1sxnh4dst12b"]
+
+[ext_resource type="Texture2D" uid="uid://rb4nmu5gltdr" path="res://Assets/tile_set_1.png" id="1_v0iea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpgxi"]
+radius = 14.0
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_v0iea")
+region_enabled = true
+region_rect = Rect2(832, 1888, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mpgxi")
