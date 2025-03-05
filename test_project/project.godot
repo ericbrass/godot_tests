@@ -10,19 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Test_Project"
-run/main_scene="uid://cw2twrug52u4g"
+config/name="test_project"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[display]
+[autoload]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
-window/stretch/mode="viewport"
+SaveData="*res://save_data.tscn"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
