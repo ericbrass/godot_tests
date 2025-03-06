@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bunatspaysu87"]
+
+[ext_resource type="PackedScene" uid="uid://c0uxbn2ngo56a" path="res://scenes/tower.tscn" id="2_aqd72"]
+
+[sub_resource type="GDScript" id="GDScript_du1rt"]
+script/source = "extends Node2D
+
+const ENEMY_RAT = preload(\"res://scenes/enemyRat.tscn\")
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	var enemy_to_be_spawned = ENEMY_RAT.instantiate()
+	enemy_to_be_spawned.position = position
+	get_parent().add_child(enemy_to_be_spawned)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_elnq2"]
+radius = 200.0
+
+[node name="mainGameNode" type="Node2D"]
+
+[node name="enemySpawner" type="Node2D" parent="."]
+position = Vector2(785, 296)
+script = SubResource("GDScript_du1rt")
+
+[node name="enemySpawnTimer" type="Timer" parent="enemySpawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="tower" parent="." instance=ExtResource("2_aqd72")]
+position = Vector2(159, 200)
+
+[node name="CollisionShape2D" parent="tower" index="1"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_elnq2")
+
+[connection signal="timeout" from="enemySpawner/enemySpawnTimer" to="enemySpawner" method="_on_enemy_spawn_timer_timeout"]
+[connection signal="body_entered" from="tower" to="tower" method="_on_body_entered"]
+[connection signal="body_exited" from="tower" to="tower" method="_on_body_exited"]
+
+[editable path="tower"]

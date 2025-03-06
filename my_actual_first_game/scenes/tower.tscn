@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0uxbn2ngo56a"]
+
+[ext_resource type="Texture2D" uid="uid://be4f4n6kj2f2m" path="res://assets/tile_set_1.png" id="1_2x682"]
+[ext_resource type="Script" uid="uid://bqf3gbqxw6rp7" path="res://scripts/tower.gd" id="1_ay4al"]
+[ext_resource type="PackedScene" uid="uid://beh7eentc7tkf" path="res://scenes/fireball.tscn" id="2_ktxwe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3y27c"]
+size = Vector2(28, 29)
+
+[node name="tower" type="Area2D"]
+script = ExtResource("1_ay4al")
+projectile = ExtResource("2_ktxwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2x682")
+region_enabled = true
+region_rect = Rect2(160, 32, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3y27c")
+
+[node name="towerAttackTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="towerAttackTimer" to="." method="_on_tower_attack_timer_timeout"]
