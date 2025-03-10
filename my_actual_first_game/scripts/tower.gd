@@ -8,11 +8,13 @@ var towerTargetMode : String = "closest"
 var targetModes : Array [String] = ["closest","farthest","weakest","strongest"]
 var attackSpeed : float = 2.0
 var attackDamage : float = 5.0
+var attackRange : float = 200.0
 
 func _ready() -> void:
 	$towerAttackTimer.wait_time = attackSpeed
 	$towerAttackTimer.autostart = true
 	$towerAttackTimer.start()
+	$CollisionShape2D.shape.radius = attackRange
 
 func _on_body_entered(body: Node2D) -> void:
 	if (!enemyArray.has(body)):
@@ -89,9 +91,23 @@ func shoot(target):
 func _on_option_button_item_selected(index: int) -> void:
 	towerTargetMode = targetModes[index]
 
-func _on_upgrade_button_pressed() -> void:
+func _on_upgrade_damage_pressed() -> void:
 	if ( global.gold >= 5 ):
 		global.gold -= 5
 		self.attackDamage += 3.0
+	else:
+		print ("not enough gold!")
+
+func _on_upgrade_range_pressed() -> void:
+	if ( global.gold >= 3 ):
+		global.gold -= 3
+		$CollisionShape2D.shape.radius += 50.0
+	else:
+		print ("not enough gold!")
+
+func _on_upgrade_speed_pressed() -> void:
+	if ( global.gold >= 3 ):
+		global.gold -= 3
+		self.attackSpeed -= .5
 	else:
 		print ("not enough gold!")
