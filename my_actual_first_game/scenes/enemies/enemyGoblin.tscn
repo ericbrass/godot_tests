@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8erwa0kf13mp"]
+
+[ext_resource type="Script" uid="uid://bfd6le30i1lgu" path="res://scripts/enemyBasic.gd" id="1_benos"]
+[ext_resource type="Texture2D" uid="uid://be4f4n6kj2f2m" path="res://assets/tile_set_1.png" id="1_ee2mg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_benos"]
+bg_color = Color(1.09497e-06, 0.382406, 0.227513, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_benos"]
+radius = 22.0227
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_benos")
+startingHealth = 20
+speed = 50
+gold_awarded = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_ee2mg")
+region_enabled = true
+region_rect = Rect2(608, 1920, 32, 32)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -19.0
+offset_top = 26.0
+offset_right = 23.0
+offset_bottom = 37.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_benos")
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_benos")

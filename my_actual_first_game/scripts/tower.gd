@@ -92,6 +92,6 @@ func _on_option_button_item_selected(index: int) -> void:
 func _on_upgrade_button_pressed() -> void:
 	if ( global.gold >= 5 ):
 		global.gold -= 5
-		self.attackDamage += 5.0
+		self.attackDamage += 3.0
 	else:
 		print ("not enough gold!")

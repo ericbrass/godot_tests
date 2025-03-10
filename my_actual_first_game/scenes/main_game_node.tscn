@@ -1,34 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bunatspaysu87"]
+[gd_scene load_steps=5 format=3 uid="uid://bunatspaysu87"]
 
 [ext_resource type="Script" uid="uid://c2geaffvvcdc0" path="res://scripts/main_game_node.gd" id="1_3y27c"]
-[ext_resource type="PackedScene" uid="uid://beh7eentc7tkf" path="res://scenes/fireball.tscn" id="2_3y27c"]
+[ext_resource type="Script" uid="uid://joo2e5sb06mj" path="res://scripts/enemy_spawner.gd" id="2_3y27c"]
 [ext_resource type="PackedScene" uid="uid://c0uxbn2ngo56a" path="res://scenes/tower.tscn" id="2_aqd72"]
-
-[sub_resource type="GDScript" id="GDScript_du1rt"]
-script/source = "extends Node2D
-
-# have to put these in onready statements for it to work
-@onready var enemyRat = preload(\"res://scenes/enemyRat.tscn\")
-@onready var enemyGhost = preload(\"res://scenes/enemyGhost.tscn\")
-@onready var enemyArray :Array = [enemyRat, enemyGhost]
-
-# variable declarations
-var enemyCounter :int = 0
-var enemyToBeSpawned :int = 0
-
-#spawn the enemies on a timer
-func _on_enemy_spawn_timer_timeout() -> void:
-	var enemy_to_be_spawned = enemyArray[enemyToBeSpawned].instantiate()
-	
-	# old way to do it : var enemy_to_be_spawned = enemyRat.instantiate()
-	
-	enemy_to_be_spawned.position = position
-	get_parent().add_child(enemy_to_be_spawned)
-	enemyCounter += 1
-	if enemyCounter >= 5 and enemyToBeSpawned == 0:
-		enemyToBeSpawned += 1
-	print (\"enemies spawned \", enemyCounter)
-"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_elnq2"]
 radius = 200.0
@@ -38,7 +12,7 @@ script = ExtResource("1_3y27c")
 
 [node name="enemySpawner" type="Node2D" parent="."]
 position = Vector2(785, 296)
-script = SubResource("GDScript_du1rt")
+script = ExtResource("2_3y27c")
 
 [node name="enemySpawnTimer" type="Timer" parent="enemySpawner"]
 wait_time = 2.0
@@ -46,7 +20,6 @@ autostart = true
 
 [node name="tower" parent="." instance=ExtResource("2_aqd72")]
 position = Vector2(159, 200)
-fireballScene = ExtResource("2_3y27c")
 
 [node name="CollisionShape2D" parent="tower" index="1"]
 position = Vector2(0, 1)
@@ -57,7 +30,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="tower2" parent="." instance=ExtResource("2_aqd72")]
 position = Vector2(159, 396)
-fireballScene = ExtResource("2_3y27c")
 
 [node name="CollisionShape2D" parent="tower2" index="1"]
 position = Vector2(0, 1)

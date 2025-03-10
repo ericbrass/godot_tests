@@ -3,6 +3,7 @@ extends CharacterBody2D
 # exports so you can have different values per different enemy scenes
 @export var startingHealth :int
 @export var speed :int
+@export var gold_awarded :int
 
 # health variable that actually takes damage
 var health :int
@@ -22,5 +23,5 @@ func take_damage(amount):
 	health -= amount
 	$HealthBar.value = health
 	if health <= 0:
-		global.gold += 1
+		global.gold += gold_awarded
 		queue_free()

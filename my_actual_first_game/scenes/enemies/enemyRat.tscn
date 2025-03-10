@@ -55,6 +55,7 @@ _data = {
 script = ExtResource("1_g4cd1")
 startingHealth = 10
 speed = 50
+gold_awarded = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_p20aq")
