@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5yyf71ojsfap"]
+
+[ext_resource type="Script" uid="uid://bfd6le30i1lgu" path="res://scripts/enemyBasic.gd" id="1_uo4vd"]
+[ext_resource type="Texture2D" uid="uid://be4f4n6kj2f2m" path="res://assets/tile_set_1.png" id="2_8yn87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4cd1"]
+bg_color = Color(0.0459045, 0.366864, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rqi6"]
+radius = 15.0
+
+[node name="enemyGhost" type="CharacterBody2D"]
+script = ExtResource("1_uo4vd")
+startingHealth = 15
+speed = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8yn87")
+region_enabled = true
+region_rect = Rect2(32, 2368, 32, 32)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -13.0
+offset_top = 12.0
+offset_right = 13.0
+offset_bottom = 20.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_g4cd1")
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6rqi6")

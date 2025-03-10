@@ -67,11 +67,11 @@ shape = SubResource("CircleShape2D_elnq2")
 metadata/_edit_use_anchors_ = true
 
 [node name="goldCount" type="Label" parent="."]
-unique_name_in_owner = true
 offset_left = 28.0
 offset_top = 19.0
 offset_right = 69.0
 offset_bottom = 42.0
+text = "Gold:"
 
 [connection signal="timeout" from="enemySpawner/enemySpawnTimer" to="enemySpawner" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="body_entered" from="tower" to="tower" method="_on_body_entered"]

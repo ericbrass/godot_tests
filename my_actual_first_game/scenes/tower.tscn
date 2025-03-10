@@ -5,13 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://beh7eentc7tkf" path="res://scenes/fireball.tscn" id="2_ktxwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3y27c"]
-size = Vector2(28, 29)
+size = Vector2(56, 61)
 
 [node name="tower" type="Area2D"]
 script = ExtResource("1_ay4al")
-projectile = ExtResource("2_ktxwe")
+fireballScene = ExtResource("2_ktxwe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("1_2x682")
 region_enabled = true
 region_rect = Rect2(160, 32, 32, 32)
@@ -22,4 +23,31 @@ shape = SubResource("RectangleShape2D_3y27c")
 
 [node name="towerAttackTimer" type="Timer" parent="."]
 
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = -44.0
+offset_top = 35.0
+offset_right = 43.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 12
+selected = 0
+item_count = 4
+popup/item_0/text = "closest"
+popup/item_0/id = 0
+popup/item_1/text = "farthest"
+popup/item_1/id = 1
+popup/item_2/text = "weakest"
+popup/item_2/id = 2
+popup/item_3/text = "strongest"
+popup/item_3/id = 3
+
+[node name="upgradeButton" type="Button" parent="."]
+offset_left = -36.0
+offset_top = -66.0
+offset_right = 37.0
+offset_bottom = -35.0
+theme_override_font_sizes/font_size = 12
+text = "upgrade"
+
 [connection signal="timeout" from="towerAttackTimer" to="." method="_on_tower_attack_timer_timeout"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="upgradeButton" to="." method="_on_upgrade_button_pressed"]
