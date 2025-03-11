@@ -10,6 +10,7 @@ size = Vector2(128, 600)
 size = Vector2(128, 600)
 
 [node name="Pipe" type="Area2D"]
+z_index = 1
 script = ExtResource("1_arpqm")
 
 [node name="bottomCollision" type="CollisionShape2D" parent="."]

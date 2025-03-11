@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://diktrxqie8ec7" path="res://assets/speed_up_icon.png" id="6_85u2j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktxwe"]
+resource_local_to_scene = true
 radius = 200.0
 
 [node name="tower" type="Area2D"]

@@ -17,6 +17,7 @@ offset_bottom = 800.0
 color = Color(0.484764, 0.886497, 0.974776, 1)
 
 [node name="player" parent="." instance=ExtResource("2_72e8q")]
+unique_name_in_owner = true
 position = Vector2(240, 400)
 
 [node name="worldBorder" type="Area2D" parent="."]
@@ -33,9 +34,15 @@ offset_bottom = 425.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
+[node name="debugLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "test"
+horizontal_alignment = 1
+
 [node name="pipeSpawnTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="worldBorder" to="." method="_on_world_border_body_entered"]
 [connection signal="timeout" from="pipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]
-
-[editable path="player"]
