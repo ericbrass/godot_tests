@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://lg77aig4cyki"]
+
+[ext_resource type="Texture2D" uid="uid://g4b4663f2w88" path="res://assets/clouds/cloud2.png" id="1_3kihe"]
+[ext_resource type="Script" uid="uid://dd3g7lb53kke0" path="res://scripts/cloud_movement.gd" id="2_08a8g"]
+
+[node name="cloud2" type="Sprite2D"]
+texture = ExtResource("1_3kihe")
+script = ExtResource("2_08a8g")

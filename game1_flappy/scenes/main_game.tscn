@@ -1,9 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu4tem7cr1nxp"]
+[gd_scene load_steps=6 format=3 uid="uid://bu4tem7cr1nxp"]
 
 [ext_resource type="Script" uid="uid://jpff6ljg7cwf" path="res://scripts/main_game.gd" id="1_s3esy"]
 [ext_resource type="PackedScene" uid="uid://c8lbyd37wrgdv" path="res://scenes/player.tscn" id="2_72e8q"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72e8q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d2op2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72e8q"]
+bg_color = Color(0.639216, 0, 0.14902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_s3esy")
@@ -18,6 +29,7 @@ color = Color(0.484764, 0.886497, 0.974776, 1)
 
 [node name="player" parent="." instance=ExtResource("2_72e8q")]
 unique_name_in_owner = true
+z_index = 7
 position = Vector2(240, 400)
 
 [node name="worldBorder" type="Area2D" parent="."]
@@ -26,23 +38,56 @@ position = Vector2(240, 400)
 position = Vector2(0, 840)
 shape = SubResource("WorldBoundaryShape2D_72e8q")
 
+[node name="topBorder" type="CollisionShape2D" parent="worldBorder"]
+position = Vector2(0, -50)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_d2op2")
+
 [node name="mainLabel" type="Label" parent="."]
+visible = false
+top_level = true
+z_index = 20
+z_as_relative = false
 offset_left = 140.0
 offset_top = 375.0
 offset_right = 340.0
-offset_bottom = 425.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_72e8q")
 horizontal_alignment = 1
 
-[node name="debugLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
-text = "test"
+[node name="scoreLabel" type="Label" parent="."]
+top_level = true
+z_index = 10
+offset_left = 140.0
+offset_top = 50.0
+offset_right = 340.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="pipeSpawnTimer" type="Timer" parent="."]
 
+[node name="cloudSpawnTimer" type="Timer" parent="."]
+
+[node name="restartButton" type="Button" parent="."]
+z_index = 21
+z_as_relative = false
+offset_left = 204.0
+offset_top = 433.0
+offset_right = 276.0
+offset_bottom = 464.0
+text = "Restart?"
+
 [connection signal="body_entered" from="worldBorder" to="." method="_on_world_border_body_entered"]
 [connection signal="timeout" from="pipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]
+[connection signal="timeout" from="cloudSpawnTimer" to="." method="_on_cloud_spawn_timer_timeout"]
+[connection signal="pressed" from="restartButton" to="." method="_on_restart_button_pressed"]
