@@ -10,12 +10,13 @@ extends Node2D
 @onready var cloudArray :Array = [cloud_1, cloud_2, cloud_3, cloud_4]
 
 var current_score :int = 0
+var is_game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# hide game over and restart
-	$mainLabel.visible = false
-	$restartButton.visible = false
+	%mainLabel.visible = false
+	%restartButton.visible = false
 	
 	# set and start timers
 	$pipeSpawnTimer.wait_time = 4.0
@@ -30,7 +31,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("tap"):
+	if Input.is_action_just_pressed("tap") and is_game_over == false:
 		animation_player.play("jump")
 
 func _on_world_border_body_entered(body: Node2D) -> void:
@@ -50,10 +51,12 @@ func _on_cloud_spawn_timer_timeout() -> void:
 	add_child(cloud_to_be_spawned)
 
 func game_over():
+	is_game_over = true
 	$player.queue_free()
-	$mainLabel.text = "Game Over"
-	$mainLabel.visible = true
-	$restartButton.visible = true
+	$gameOverLayer.visible = true
+	%mainLabel.text = "Game Over\nFinal Score: " + str(current_score)
+	%mainLabel.visible = true
+	%restartButton.visible = true
 	#get_tree().paused = true
 
 func increase_score():

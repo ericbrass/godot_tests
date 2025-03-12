@@ -43,19 +43,39 @@ position = Vector2(0, -50)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_d2op2")
 
-[node name="mainLabel" type="Label" parent="."]
+[node name="gameOverLayer" type="CanvasLayer" parent="."]
 visible = false
+
+[node name="ColorRect" type="ColorRect" parent="gameOverLayer"]
+z_index = 15
+z_as_relative = false
+offset_right = 480.0
+offset_bottom = 800.0
+color = Color(0.466667, 0.466667, 0.466667, 1)
+
+[node name="mainLabel" type="Label" parent="gameOverLayer"]
+unique_name_in_owner = true
 top_level = true
 z_index = 20
 z_as_relative = false
-offset_left = 140.0
+offset_left = 120.0
 offset_top = 375.0
-offset_right = 340.0
+offset_right = 360.0
 offset_bottom = 475.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_72e8q")
 horizontal_alignment = 1
+
+[node name="restartButton" type="Button" parent="gameOverLayer"]
+unique_name_in_owner = true
+z_index = 21
+z_as_relative = false
+offset_left = 204.0
+offset_top = 500.0
+offset_right = 276.0
+offset_bottom = 531.0
+text = "Restart?"
 
 [node name="scoreLabel" type="Label" parent="."]
 top_level = true
@@ -78,16 +98,11 @@ vertical_alignment = 1
 
 [node name="cloudSpawnTimer" type="Timer" parent="."]
 
-[node name="restartButton" type="Button" parent="."]
-z_index = 21
-z_as_relative = false
-offset_left = 204.0
-offset_top = 433.0
-offset_right = 276.0
-offset_bottom = 464.0
-text = "Restart?"
+[node name="instructionLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="body_entered" from="worldBorder" to="." method="_on_world_border_body_entered"]
+[connection signal="pressed" from="gameOverLayer/restartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="timeout" from="pipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]
 [connection signal="timeout" from="cloudSpawnTimer" to="." method="_on_cloud_spawn_timer_timeout"]
-[connection signal="pressed" from="restartButton" to="." method="_on_restart_button_pressed"]
