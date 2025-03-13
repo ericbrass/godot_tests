@@ -1,10 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7llkinlpktdv"]
+[gd_scene load_steps=5 format=3 uid="uid://c7llkinlpktdv"]
 
 [ext_resource type="Script" uid="uid://bqrdwid7voaf7" path="res://scripts/main_game.gd" id="1_s3esy"]
 [ext_resource type="PackedScene" uid="uid://dbbqxwh1nysv" path="res://scenes/player.tscn" id="2_72e8q"]
+[ext_resource type="Script" uid="uid://bgj8v4gtso6p3" path="res://scripts/cityscape.gd" id="3_0rdsr"]
+[ext_resource type="PackedScene" uid="uid://dlqsmt1yimh3i" path="res://scenes/city_scape.tscn" id="3_ipu61"]
 
 [node name="mainGame" type="Node2D"]
 script = ExtResource("1_s3esy")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="cityScape" parent="background" instance=ExtResource("3_ipu61")]
+position = Vector2(0, 240)
+offset = Vector2(1200, 0)
+script = ExtResource("3_0rdsr")
 
 [node name="player" parent="." instance=ExtResource("2_72e8q")]
 
