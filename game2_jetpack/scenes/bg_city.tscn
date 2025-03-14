@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2knv6u8ajqtu"]
+
+[ext_resource type="Texture2D" uid="uid://dpm8yhftrq15x" path="res://assets/cityscape.svg" id="1_gajqs"]
+
+[node name="bgCity" type="Sprite2D"]
+texture = ExtResource("1_gajqs")
+centered = false

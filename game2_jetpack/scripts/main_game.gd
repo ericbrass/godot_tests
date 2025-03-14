@@ -2,7 +2,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$player.position = Vector2(300,240)
+	$player.position = Vector2(300,400)
+	$player.z_index = 100
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
