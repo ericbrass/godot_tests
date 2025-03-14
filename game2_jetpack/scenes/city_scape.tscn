@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlqsmt1yimh3i"]
-
-[ext_resource type="Texture2D" uid="uid://dpm8yhftrq15x" path="res://assets/cityscape.svg" id="1_ekjej"]
-
-[node name="cityScape" type="Sprite2D"]
-texture = ExtResource("1_ekjej")
